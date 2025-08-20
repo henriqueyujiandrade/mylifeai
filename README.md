@@ -1,71 +1,116 @@
-# MyLife.AI
+# MyLife.AI - React 19 Template
 
-A modern React application built with TypeScript, Vite, and advanced theming capabilities.
+Um template moderno e production-ready para desenvolvimento de aplicações React com TypeScript, otimizado com as mais recentes tecnologias e melhores práticas.
 
-This project provides a comprehensive setup for React development with HMR, ESLint rules, and modern best practices.
+## 🚀 Sobre o Template
 
-Currently, two official plugins are available:
+Este template fornece uma base sólida para construir aplicações React modernas, implementando **Domain-Driven Design (DDD)** com monitoramento de performance avançado e otimizações para React 19.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ⚡ Principais Tecnologias
 
-## Expanding the ESLint configuration
+- **React 19** com hooks mais recentes (`use`, `useOptimistic`, `startTransition`)
+- **TypeScript 5.8+** com configuração estrita
+- **Vite 7.1.2** com configuração otimizada para produção
+- **TanStack Router** para roteamento type-safe
+- **TanStack Query** para gerenciamento de estado do servidor
+- **Tailwind CSS v4** para estilização
+- **Sistema de store customizado** otimizado para React 19
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🏗️ Arquitetura (DDD)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── app/              # Configuração da aplicação (providers, temas, config)
+├── features/         # Módulos de funcionalidades isoladas
+├── entities/         # Entidades de domínio e schemas
+├── shared/           # Componentes, hooks e utilitários reutilizáveis
+├── pages/            # Componentes de rota (TanStack Router)
+├── infrastructure/   # Integrações externas (API, monitoramento)
+└── types/            # Definições de tipos globais
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📋 Requisitos
+
+- **Node.js** >= 18.0.0
+- **pnpm** >= 8.0.0 (recomendado) ou npm >= 9.0.0
+- **Git** para controle de versão
+
+## 🚀 Instalação e Uso
+
+### 1. Clone o repositório
+```bash
+git clone https://github.com/henriqueyujiandrade/mylifeai.git
+cd mylifeai
+```
+
+### 2. Instale as dependências
+```bash
+# Com pnpm (recomendado)
+pnpm install
+
+# Ou com npm
+npm install
+```
+
+### 3. Configure as variáveis de ambiente
+```bash
+cp .env.example .env
+# Edite o arquivo .env com suas configurações
+```
+
+### 4. Inicie o servidor de desenvolvimento
+```bash
+pnpm dev
+# Aplicação disponível em http://localhost:3000
+```
+
+## 📜 Scripts Disponíveis
+
+### Desenvolvimento
+- `pnpm dev` - Servidor de desenvolvimento na porta 3000
+- `pnpm build` - Build de produção otimizado
+- `pnpm preview` - Preview do build de produção
+
+### Qualidade de Código
+- `pnpm lint` - Verificação ESLint (máx 20 warnings)
+- `pnpm lint:fix` - Correção automática de problemas ESLint
+- `pnpm type-check` - Verificação de tipos TypeScript
+
+### Testes
+- `pnpm test` - Executa testes com Vitest
+- `pnpm test:ui` - Interface de testes
+
+### Análise de Bundle
+- `pnpm build:analyze` - Análise do tamanho do bundle
+- `pnpm build:stats` - Estatísticas detalhadas na porta 3001
+
+## 🎯 Recursos Incluídos
+
+- ✅ **Monitoramento de Performance** - Web Vitals e métricas de componentes
+- ✅ **Error Boundaries Avançados** - Recuperação inteligente de erros
+- ✅ **Sistema de Temas** - Troca dinâmica entre temas claro/escuro
+- ✅ **Internacionalização** - Sistema i18n configurado
+- ✅ **Code Splitting** - Chunks otimizados por funcionalidade
+- ✅ **DevTools** - React Query e Router DevTools incluídos
+- ✅ **SEO Ready** - Meta tags e configurações otimizadas
+
+## 📊 Performance Targets
+
+- **React vendor chunk**: ~230KB → ~73KB gzipped
+- **Feature chunks**: <10KB cada
+- **Initial load**: <100KB gzipped
+
+## 🔧 Configurações Avançadas
+
+### Customização do ESLint
+
+Para projetos em produção, recomendamos habilitar regras type-aware:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
 export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
+  // ... outras configurações
+  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
 ])
 ```
