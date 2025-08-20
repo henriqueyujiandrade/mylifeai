@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* Base theme configuration with CSS custom properties */
+@theme {
+  --font-display: "Inter", "sans-serif";
+  --color-brand-500: oklch(0.84 0.18 117.33);
+  --color-brand-900: oklch(0.53 0.12 118.34);
+  --breakpoint-3xl: 1920px;
+}
+
+/* Root variables - will be dynamically updated by theme context */
+:root {
+  /* Default light theme colors */
+  --background: var(--color-gray-50);
+  --foreground: var(--color-gray-900);
+  --surface: white;
+  --surface-secondary: var(--color-gray-100);
+  --border: var(--color-gray-200);
+  --border-hover: var(--color-gray-300);
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-600);
+  --text-muted: var(--color-gray-500);
+  
+  /* Interactive states */
+  --primary: var(--color-primary-600);
+  --primary-hover: var(--color-primary-700);
+  --primary-active: var(--color-primary-800);
+  --primary-foreground: white;
+  
+  /* Status colors */
+  --success: var(--color-success-500);
+  --warning: var(--color-warning-500);
+  --error: var(--color-error-500);
+  
+  /* Shadows */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+}
+
+/* Dark theme overrides */
+.dark {
+  --background: var(--color-gray-950);
+  --foreground: var(--color-gray-50);
+  --surface: var(--color-gray-900);
+  --surface-secondary: var(--color-gray-800);
+  --border: var(--color-gray-800);
+  --border-hover: var(--color-gray-700);
+  --text-primary: var(--color-gray-50);
+  --text-secondary: var(--color-gray-300);
+  --text-muted: var(--color-gray-400);
+  
+  /* Interactive states for dark mode */
+  --primary: var(--color-primary-500);
+  --primary-hover: var(--color-primary-400);
+  --primary-active: var(--color-primary-300);
+  --primary-foreground: var(--color-gray-900);
+}
+
+/* Global styles using theme variables */
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-family-sans);
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Utility classes for themed components */
+.theme-bg-primary {
+  background-color: var(--background);
+}
+
+.theme-bg-surface {
+  background-color: var(--surface);
+}
+
+.theme-bg-surface-secondary {
+  background-color: var(--surface-secondary);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+.theme-border {
+  border-color: var(--border);
+}
+
+.theme-border-hover:hover {
+  border-color: var(--border-hover);
+}
+
+.theme-button-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.theme-button-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.theme-button-primary:active {
+  background-color: var(--primary-active);
+}
+
+.theme-shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.theme-shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
+}
+
+/* Focus ring that respects theme */
+.theme-focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary);
+}

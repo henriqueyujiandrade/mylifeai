@@ -1,0 +1,18 @@
+{
+  "name": "MyLife.AI",
+  "short_name": "MyLifeAI",
+  "description": "Modern React TypeScript Application with React 19 and advanced theming",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "lang": "en-US"
+}
